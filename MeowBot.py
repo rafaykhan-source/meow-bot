@@ -1,6 +1,10 @@
 import os
+from dotenv import load_dotenv
 import discord
 import time
+
+def configure():
+  load_dotenv()
 
 client = discord.Client()
 
@@ -32,5 +36,10 @@ async def on_message(message):
     else:
       await message.channel.send("too many meows... shutting down")
     return
+  
+  if 'meow' in message.content:
+    await message.channel.send("meow!")
+    return
 
+configure()
 client.run(os.environ['meow'])
